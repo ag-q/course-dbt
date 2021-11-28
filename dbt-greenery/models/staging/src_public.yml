@@ -25,5 +25,3 @@ sources:
       - name: promos
       - name: users
         loaded_at_field: created_at
-        description: >
-          Contains demographic information about each user

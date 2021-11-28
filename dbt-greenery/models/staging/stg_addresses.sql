@@ -12,12 +12,12 @@ addresses_src as (
 
 final as (
   select
-    id as address_id,
-    address_id as address_guid,
-    address,
-    zipcode,
-    state,
-    country
+    id as address_id
+    , address_id as address_guid
+    , address
+    , zipcode
+    , state
+    , country
   from addresses_src
 )
 

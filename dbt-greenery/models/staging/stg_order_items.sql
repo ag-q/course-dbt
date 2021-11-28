@@ -12,10 +12,10 @@ order_items_src as (
 
 final as (
   select
-    id as order_item_id,
-    order_id as order_guid,
-    product_id as product_guid,
-    quantity
+    id as order_item_id
+    , order_id as order_guid
+    , product_id as product_guid
+    , quantity as product_quantity
   from order_items_src
 )
 

@@ -1,0 +1,18 @@
+
+version: 2
+
+models:
+  - name: addresses
+    description: Contains address information
+  - name: events
+    description: Contains information about users' website actions
+  - name: order_items
+    description: Contains information about ordered products for each order
+  - name: orders
+    description: Contains users' order information 
+  - name: products
+    description: Contains products' characteristics
+  - name: promos
+    description: Contains promos' characteristics
+  - name: users
+    description: Contains users' characteristics

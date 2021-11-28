@@ -12,11 +12,11 @@ products_src as (
 
 final as (
   select
-    id as product_id,
-    product_id as product_guid,
-    name as product_name,
-    price as product_price,
-    quantity as product_quantity
+    id as product_id
+    , product_id as product_guid
+    , name as product_name
+    , price as product_price
+    , quantity as product_stock_quantity
   from products_src
 )
 

@@ -12,10 +12,10 @@ promos_src as (
 
 final as (
   select
-    id as promo_id,
-    promo_id as promo_guid,
-    discout as discount,
-    status as promo_status
+    id as promo_id
+    , promo_id as promo_guid
+    , discout as discount
+    , status as promo_status
   from promos_src
 )
 
