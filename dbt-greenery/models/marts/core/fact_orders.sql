@@ -19,11 +19,6 @@ select
   , extract(day from delivered_at_utc - created_at_utc) days_to_deliver
   , order_status
   , address_guid
-from
-  {{ ref('stg_orders') }} o
-left join
-  {{ ref('int_orders') }}
-using (order_guid)
-left join
-  {{ ref('stg_promos') }}
-using (promo_guid)
+from {{ ref('stg_orders') }} o
+left join {{ ref('int_orders') }} using (order_guid)
+left join {{ ref('stg_promos') }} using (promo_guid)

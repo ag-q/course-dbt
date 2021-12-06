@@ -19,6 +19,7 @@ final as (
     , page_url
     , created_at as created_at_utc
     , event_type
+    , case when substring(page_url, '[^/]*$') ~ '^[a-z\.]+$' then null else substring(page_url, '[^/]*$') end product_guid
   from events_src
 )
 

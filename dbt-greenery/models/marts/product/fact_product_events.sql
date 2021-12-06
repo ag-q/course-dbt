@@ -1,26 +1,11 @@
 select
   product_guid
   , product_name
-  , events
-  , product_page_view_events
-  , product_add_to_cart_events
-  , product_delete_from_cart_events
-  , product_checkout_events
-  , product_package_shipped_events
-  , sessions
-  , product_page_view_sessions
-  , product_add_to_cart_sessions
-  , product_delete_from_cart_sessions
-  , product_checkout_sessions
-  , product_package_shipped_sessions
-  , users
-  , product_page_view_users
-  , product_add_to_cart_users
-  , product_delete_from_cart_users
-  , product_checkout_users
-  , product_package_shipped_users
-from
-  {{ ref('int_product_events') }}
-left join
-  {{ ref('stg_products') }}
-using(product_guid)
+  , count(distinct case when event_type = 'page_view' then session_guid else null end) product_page_view_sessions
+  , count(distinct case when event_type = 'add_to_cart' then session_guid else null end) add_to_cart_sessions
+  , count(distinct case when event_type = 'delete_from_cart' then session_guid else null end) delete_from_cart_sessions
+  , count(distinct case when has_checkout = 1 and is_deleted_from_cart = 'false' then session_guid else null end) checkout_sessions
+  , count(distinct case when has_package_shipped = 1 and is_deleted_from_cart = 'false' then session_guid else null end) package_shipped_sessions
+from {{ ref('int_product_events') }}
+left join {{ ref('dim_products') }} using(product_guid)
+{{ dbt_utils.group_by(2) }}

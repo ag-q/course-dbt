@@ -1,0 +1,36 @@
+version: 2
+
+macros:
+  - name: sum_if
+    description: Macro for calculating number of occurences under a specific condition
+    arguments:
+      - name: column_name
+        type: <string>
+        description: Name of a condition column
+      - name: column_value
+        type: <string>
+        description: Column value for which number of occurences is calculated
+      - name: prefix
+        type: <string>
+        description: An optional prefix that can be added to column name
+      - name: suffix
+        type: <string>
+        description: An optional suffix that can be added to column name
+  - name: count_distinct_if
+    description: Macro for calculating distinct column values under a specific condition
+    arguments:
+      - name: column_name
+        type: <string>
+        description: Name of a condition column
+      - name: column_value
+        type: <list>
+        description: Column value for which distinct count of count_column_name is calculated
+      - name: count_column_name
+        type: <list>
+        description: Column name for calculating distinct values
+      - name: prefix
+        type: <string>
+        description: An optional prefix that can be added to column name
+      - name: suffix
+        type: <string>
+        description: An optional suffix that can be added to column name

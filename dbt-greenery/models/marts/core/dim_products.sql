@@ -4,5 +4,4 @@ select
   , product_name
   , product_price
   , product_stock_quantity
-from
-  {{ ref('stg_products') }}
+from {{ ref('stg_products') }}

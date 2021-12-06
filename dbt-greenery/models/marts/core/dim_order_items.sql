@@ -3,5 +3,4 @@ select
   , order_guid
   , product_guid
   , product_quantity
-from
-  {{ ref('stg_order_items') }}
+from {{ ref('stg_order_items') }}

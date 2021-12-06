@@ -3,21 +3,116 @@ version: 2
 
 models:
   - name: dim_users
-    description: Contains all the dimensions/features about users (with hashed PII)
+    description: "Contains all the dimensions/features about users (with hashed PII)"
     columns:
       - name: user_id
+        description: "User ordinal column"
         tests:
           - unique
           - not_null
       - name: user_guid
+        description: "Unique user identifier"
+        tags: [primary key]
         tests:
           - unique
           - not_null
-  - name: dim_orders
+      - name: first_name
+        description: "User first name"
+        tests:
+          - not_null
+      - name: last_name
+        description: "User last name"
+        tests:
+          - not_null
+      - name: hashed_email
+        description: "User e-mail address (hashed)"
+        tests:
+          - not_null
+      - name: hashed_phone_number
+        description: "User phone number (hashed)"
+        tests:
+          - not_null
+      - name: hashed_address
+        description: "User street name & number (hashed)"
+        tests:
+          - not_null
+      - name: zipcode
+        description: "User address zipcode"
+        tests:
+          - not_null
+      - name: state
+        description: "User address state"
+        tests:
+          - not_null
+      - name: country
+        description: "User address country"
+        tests:
+          - not_null
+      - name: created_at_utc
+        description: "User creation timestamp (UTC)"
+        tests:
+          - not_null
+  - name: fact_orders
     description: Contains all order facts
     columns:
       - name: order_id
+        description: "Order ordinal column"
         tests:
           - unique
           - not_null
+      - name: order_guid
+        description: "Unique order identifier"
+        tags: [primary key]
+        tests:
+          - unique
+          - not_null
+      - name: user_guid
+        description: "Unique user identifier"
+        tests:
+          - not_null
+      - name: user_order_number
+        description: "User orders ranking"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+      - name: days_to_next_user_order
+        description: "Number of days to next user order"
+      - name: created_at_utc
+        description: "Order creation timestamp (UTC)"
+        tests:
+          - not_null
+      - name: order_cost
+        description: "Order cost (without shipping cost)"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: shipping_cost
+        description: "Order shipping cost"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: order_total
+        description: "Order total cost"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: order_total_before_discount
+        description: "Order total cost before discount application"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: promo_guid
+        description: "Promotion unique identifier"
+      - name: order_total_before_discount
+        description: "Order total cost before discount application"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
 

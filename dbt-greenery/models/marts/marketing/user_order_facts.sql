@@ -33,17 +33,8 @@ select
   , user_delete_from_cart_sessions
   , user_checkout_sessions
   , user_package_shipped_sessions
-from
-  {{ ref('stg_users') }}
-left join
-  {{ ref('stg_addresses') }}
-using(address_guid)
-left join
-  {{ ref('int_user_orders') }}
-using(user_guid)
-left join
-  {{ ref('int_user_products') }}
-using(user_guid)
-left join
-  {{ ref('int_user_events') }}
-using(user_guid)
+from {{ ref('stg_users') }}
+left join {{ ref('stg_addresses') }} using(address_guid)
+left join {{ ref('int_user_orders') }} using(user_guid)
+left join {{ ref('int_user_products') }} using(user_guid)
+left join {{ ref('int_user_events') }} using(user_guid)

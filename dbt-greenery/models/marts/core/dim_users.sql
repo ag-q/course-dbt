@@ -10,11 +10,6 @@ select
   , state
   , country
   , created_at_utc
-from
-  {{ ref('stg_users') }}
-left join
-  {{ ref('int_hashed_pii') }}
-using(user_guid)
-left join
-  {{ ref('stg_addresses') }}
-using(address_guid)
+from {{ ref('stg_users') }}
+left join {{ ref('int_hashed_pii') }} using(user_guid)
+left join {{ ref('stg_addresses') }} using(address_guid)
