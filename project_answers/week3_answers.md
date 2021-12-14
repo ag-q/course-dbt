@@ -17,8 +17,3 @@ As there are cases when product conversion rate is greater than 100%, I wonder i
 `select product_name, checkout_sessions::float/product_page_view_sessions::float product_checkout_rate from "fact_product_events";`
 
 **Bird of Paradise: 1.14, Pilea Peperomioides: 1.13, Arrow Head: 1.11, String of pearls: 1.09, Majesty Palm: 1.09, Angel Wings Begonia: 1.08, Orchid: 1.08, Monstera: 1.07, Money Tree: 1.03, Pink Anthurium: 1.03, ZZ Plant: 1.03, Cactus: 0.97, Dragon Tree: 0.95, Peace Lily: 0.94, Calathea Makoyana: 0.93, Bamboo: 0.93, Snake Plant: 0.91, Boston Fern: 0.91, Aloe Vera: 0.89, Jade Plant: 0.88, Devil's Ivy: 0.87, Spider Plant: 0.87, Birds Nest Fern: 0.85, Pothos: 0.81, Fiddle Leaf Fig: 0.81, Philodendron: 0.79, Rubber Plant: 0.79, Ficus: 0.75, Ponytail Palm: 0.68, Alocasia Polly: 0.67**
-
-
-
-
-

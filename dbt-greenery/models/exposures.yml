@@ -1,0 +1,19 @@
+version: 2
+
+exposures:
+  
+  - name: product_funnel_dashboard
+    type: dashboard
+    maturity: medium
+    url: https://test.url/dashboards/1
+    description: >
+      Models critical to the product funnel dashboard
+    
+    depends_on:
+      - ref('fact_session_events')
+      - ref('funnel')
+      - ref('funnel_agg')
+      
+    owner:
+      name: name
+      email: test@email.com

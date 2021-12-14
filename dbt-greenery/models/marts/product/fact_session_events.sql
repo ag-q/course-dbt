@@ -3,9 +3,10 @@
 select
     session_guid
     , user_guid
+    , product_guid
     , min(created_at_utc) as created_at_utc
     {%- for event_type in event_types -%}
     {{ sum_if('event_type', event_type, '', '_events') }}
     {% endfor -%}
 from {{ ref('stg_events') }}
-{{ dbt_utils.group_by(2) }}
+{{ dbt_utils.group_by(3) }}
